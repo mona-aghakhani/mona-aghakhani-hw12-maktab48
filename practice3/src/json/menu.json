@@ -1,0 +1,29 @@
+[
+  {
+    "id":1,
+    "name": "Black Tea",
+    
+    "temp": "100",
+    "time":"180"
+  },{
+    "id":2,
+    "name": "Green Tea",
+    "temp": "80",
+    "time":"120"
+  },{
+    "id":3,
+    "name": "White Tea",
+    "temp": "75",
+    "time":"120"
+  },{
+    "id":4,
+    "name": "Read Tea",
+    "temp": "80",
+    "time":"120"
+  },{
+    "id":5,
+    "name": "coffee",
+    "temp": "100",
+    "time":"180"
+  }
+]

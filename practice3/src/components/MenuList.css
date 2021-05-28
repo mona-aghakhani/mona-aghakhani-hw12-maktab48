@@ -1,0 +1,17 @@
+.container-menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.right h4 , .right p{
+    margin: 5px;
+    /* width: 45%; */
+
+}
+.left p{
+    margin: 5px;
+    font-size: 13px;
+    /* width: 45%; */
+    color: rgb(182, 176, 176);
+}
