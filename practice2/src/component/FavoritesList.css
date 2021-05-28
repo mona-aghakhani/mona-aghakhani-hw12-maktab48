@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.favorit{
+    width: 200px;
+    text-align: center;
+    /* height: 100px; */
+    /* background: rgb(160 207 240); */
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+.favorite-name{
+    width: 80px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    /* display: inline-block; */
+    /* height: 50px; */
+    border-radius: 5px;
+    margin-right: 0;
+}
+.girl-favorite{
+    /* width: 80px; */
+    text-align: center;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    margin: 1px;
+    /* margin-right: 0; */
+    background-color: rgb(252, 199, 230);
+    color: rgb(207, 83, 160);
+    border: 1px solid rgb(207, 83, 160);
+}
+
+.boy-favorite{
+    /* width: 80px; */
+    text-align: center;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    margin: 1px;
+
+    /* margin-right: 0; */
+    background-color: rgb(160, 207, 240);
+    color: rgb(56, 105, 139);
+    border: 1px solid rgb(0, 162, 255);
+}
+.header-favorite{
+    color: gray;
+    text-align: center;
+}

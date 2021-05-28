@@ -1,0 +1,11 @@
+.container-favorite{
+    display: flex
+}
+
+
+.favorite__close{
+   display: none; 
+}
+.show{
+    display: block;
+} 

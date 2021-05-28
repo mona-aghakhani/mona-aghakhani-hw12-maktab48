@@ -1,3 +1,47 @@
+
+// import {RiBookmark3Fill} from "react-icons/ri";
+// import ContactInfo from "./ContactInfo"
+// import { FaWindowClose } from "react-icons/fa";
+// import {BiEdit} from "react-icons/bi"
+// import {AiFillSave} from "react-icons/ai"
+
+//  const ContactCard = ({contact,selected,onClick,edit,editContact,save,update,onDelete,onEdit,selectedEdit,showInput,handleShowInput}) => {
+//   //  const [show, setShow] = useState(true)
+//   //  console.log(show);
+//   // console.log(contact);
+//   const [word, setWord] = useState("")
+//   useEffect(() => {
+//     // setIndex(index =>index+1)
+//     setWord(`editted`)
+//   }, [contact])
+//   return (
+     
+//     <div className="card-container" onDoubleClick={()=>onClick(contact,contact.id)}>
+//         <RiBookmark3Fill className="star-icon" />
+//       <div><img className="img-card" src={contact.url}  /></div>
+//       {(editContact && editContact.id===contact.id) ?<input className="edit-input" placeholder="name" name="name" value={editContact.name} onChange={(e)=>update(e)}/>  : <h6  >{contact.name}</h6>} 
+//       {(editContact && editContact.id===contact.id) ?<input className="edit-input" placeholder="address" name="address" value={editContact.address} onChange={(e)=>update(e)} />  : <p  >{contact.address}</p>} 
+//    {(editContact && editContact.id===contact.id) ?<input className="edit-input" placeholder="tell" name="tell" value={editContact.tell} onChange={(e)=>update(e)}/>  : <p  >{contact.tell}</p>} 
+     
+//       <BiEdit onClick={()=>{edit(contact)}} />
+//          <AiFillSave
+//           className="task__close"
+//           onClick={(event)=>{event.stopPropagation();save(contact,contact.id,contact.url)
+//            }}
+//         />
+//       <FaWindowClose
+//         className="task__close"
+//         onClick={() => onDelete(contact.id)}
+//       />
+//       <p>{word}</p>
+//       {/* {selected && <ContactInfo contactInfo={contact} onDelete={onDelete} />  } */}
+//       {/* <ContactInfo className={`contact-info ${selected === contactInfo.id ? "active" : ""}`} contactInfo={contactInfo} /> */}
+//     </div>
+    
+//   )
+// }
+// export default ContactCard;
+
 import React,{useState} from 'react'
 import './ContactCard.css'
 import {RiBookmark3Fill} from "react-icons/ri";
@@ -38,9 +82,6 @@ import { FaWindowClose } from "react-icons/fa";
   )
 }
 export default ContactCard;
-
-
-
 
 
 // import React from 'react';
