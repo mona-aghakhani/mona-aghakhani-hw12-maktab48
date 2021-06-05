@@ -22,7 +22,7 @@ code {
   background-color: rgb(25, 56, 74);
   /* height:98vh; */
   padding: 20px;
-  margin-left: 20%;
+  margin-left: 30%;
   position: relative;
   /* overflow: hidden; */
 }
@@ -66,4 +66,7 @@ margin: 0;
 }
 .arrow-up{
   color: white;
+}
+.last-search{
+color: rgba(166, 186, 193,0.5);
 }

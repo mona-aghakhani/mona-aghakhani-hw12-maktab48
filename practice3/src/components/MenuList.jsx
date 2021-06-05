@@ -16,7 +16,7 @@ import  './MenuList.css'
             <div>
               {(this.props.list).filter(item=>(item.id <=3) ).map((obj,index)=>(
                   
-                 <div className="container-menu" onClick={()=>this.props.onAdd(obj)}>
+                 <div className="container-menu" onClick={()=>this.props.onAdd(obj,obj.time)}>
                      <div className="right">
                          <h4>{obj.name}</h4>
                          <p>{`Brew with ${obj.temp}°C water for ${obj.time}s`}</p>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 // import Name from './Name'
 import './FavoritesList.css'
 // import { FaWindowClose } from "react-icons/fa";

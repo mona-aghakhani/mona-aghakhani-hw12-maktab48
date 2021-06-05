@@ -39,17 +39,33 @@ import React from 'react'
         //     }));
         // }
     }
-    componentDidMount() {
-        // if (this.props.show){
-        //     console.log(2);
-        let timeLeft= this.secondsToTime(this.state.seconds)
-        this.setState({time:timeLeft})
-        if (this.timer === 0 && this.state.seconds > 0) {
-            this.timer = setInterval(this.countDown, 1000);
-          }
+    componentDidUpdate(prevProps, prevState, snapshot){
+        // console.log(prevProps)
+        // if (prevProps.todo.length>0 && JSON.stringify(prevProps.todo)!==JSON.stringify(this.props.todo)){
+        // if ( JSON.stringify(prevProps.todo)!==JSON.stringify(this.props.todo)){
+        //     // console.log('here')
+        //     this.setState({word:`it is changed right now ${this.state.seconds}`})
         // }
-        // this.interval = setInterval(() => this.countDown(), 1000);
+        if (this.props.show) {
+            let timeLeft= this.secondsToTime(this.state.seconds)
+            this.setState({time:timeLeft})
+            if (this.timer === 0 && this.state.seconds > 0) {
+                this.timer = setInterval(this.countDown, 1000);
+              }
+        }
     }
+
+    // componentDidMount() {
+    //     // if (this.props.show){
+    //     //     console.log(2);
+    //     let timeLeft= this.secondsToTime(this.state.seconds)
+    //     this.setState({time:timeLeft})
+    //     if (this.timer === 0 && this.state.seconds > 0) {
+    //         this.timer = setInterval(this.countDown, 1000);
+    //       }
+    //     // }
+    //     // this.interval = setInterval(() => this.countDown(), 1000);
+    // }
     componentWillUnmount(){
         clearInterval(this.interval);
     }
@@ -57,7 +73,7 @@ import React from 'react'
     render() {
         return (
             <div>
-                <p className="timer">{this.state.time.m} : {this.state.time.s} left </p>
+                <h1 className="timer">{this.state.time.m} : {this.state.time.s} left </h1>
             </div>
         )
     }

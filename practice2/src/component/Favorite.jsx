@@ -10,7 +10,7 @@ import './Favorite.css'
             <p  className={person.sex === 'girl' ? 'girl-favorite' : "boy-favorite"}  onMouseOver={()=>setselected(person.id)}>{person.name}</p>
             <FaWindowClose
         className={`favorite__close ${selected === person.id ? "show" : ""}`}
-        onClick={() => onDelete(person.id)}
+        onClick={() => onDelete(person.id,person)}
       />
            {/* {selected && <FaWindowClose
         className="favorite__close"

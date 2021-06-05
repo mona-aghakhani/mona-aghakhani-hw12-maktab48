@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import './AddContact.css'
- const AddContact = ({onAddContact}) => {
+ const AddContact = ({onAddContact,onClose}) => {
     const [name, setName] = useState("")
     const [errName, setErrName] = useState("")
     const [tell, setTell] = useState("")
@@ -34,7 +34,8 @@ import './AddContact.css'
              }
     //  console.log('contact');
     return (
-        <div className="modal">
+        <div className="modal-add">
+            <button className="close-btn" onClick={onClose}>x</button>
             <h3>Add Contact</h3>
         <form onSubmit={handleSubmit} className="add-form">
         <div className="form-control">

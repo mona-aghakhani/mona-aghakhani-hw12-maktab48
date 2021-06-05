@@ -7,6 +7,8 @@ import {HiViewGrid} from "react-icons/hi"
 // import Contacts from "./Contacts"
 import ContactList from "../components/ContactList"
 import AddContact from "../components/AddContact"
+import ContactInfo from "../components/ContactInfo"
+import UseLocalStorage from "../components/UseLocalStorage"
 import user1 from "./user1.jpg"
 import user2 from "./user2.jpg"
 import user3 from "./user3.jpg"
@@ -14,11 +16,7 @@ import user4 from "./user4.jpg"
 import user5 from "./user5.jpg"
 import user6 from "./user6.jpg"
 import profile from "./profile.png"
-// import user7 from "./user7.jpg"
-// import user8 from "./user8.jpg"
-// import user9 from "./user9.jpg"
-// import user10 from "./user10.jpg"
-// import { RiGameFill } from "react-icons/ri";
+
 const App = () => {
   // const title = "Task Manager";
 
@@ -77,18 +75,64 @@ const App = () => {
   const handleSearch = (search) =>{
     setSearch(search)
   }
+  const ref = React.createRef();
+  const [searchTerm, setSearchTerm] = UseLocalStorage(
+    "search",
+    "Not searched yet"
+  );
+  // const newSearch = () => {
+    
+  //   setSearchTerm(ref.current.value);
+  // };
+  const newSearch = (e) => {
+    if (e.keyCode === 13) {
+      // console.log(ref.current.value);
+      // let arr=[]
+      // let a=ref.current.value
+      // arr.push(a)
+      // let myArr=[...arr,a]
+      // console.log(myArr);
+      // console.log(arr);
+      setSearchTerm(ref.current.value);
+        }
+   
+  };
+  // const newSearch = (event) => {
+  //   if (event.keyCode === 13) {
+  //     event.preventDefault();
+  //     let newItem=ref.current.value;
+  //     setSearchTerm(...searchTerm,newItem)
+  //     // this.search();
+  //   }
+  //   // setSearchTerm(ref.current.value);
+  // };
+
+  const [close, setClose] = useState(false)
+const handleclose = ()=>{
+  setClose(true)
+}
   const [showAddContact, setShowAddContact] = useState(false);
+  const [closeAdd, setCloseAdd] = useState(false)
+  const handlecloseAdd = ()=>{
+    setCloseAdd(true)
+  }
 const handleAddContact = (contact)=>{
   console.log("contact");
   let id=(contacts.length)+1;
   let url=profile;
   let newContact ={...contact,id,url}
   setContacts([...contacts,newContact])
+  setCloseAdd(false)
+  // setClose(false)
 }
 const handleDelete = (contactId) => {
   console.log(contactId);
   setContacts(contacts.filter((contact) => contact.id !== contactId));
+console.log(contacts);
 };
+
+
+
 // const [showInput, setShowInput] = useState(false)
 const handleShowInput=(contactId)=>{
   console.log("input");
@@ -99,10 +143,25 @@ const handleShowInput=(contactId)=>{
   // }
   // setShowInput(!showInput)
 }
+const [selectedContact, setSelectedContact] = useState(null);
+const handleShow = (obj, contactId) =>{
+  setSelectedContact(obj)
+  setClose(false)
+
+  // let mycontact=contacts.filter((contact)=>contact.id === contactId)
+  // setSelectedContact(contacts.filter((contact)=>contact.id === contactId))
+    // alert(1)
+    // console.log( mycontact);
+    // setSelectedContact(...selectedContact,...mycontact)
+    // console.log(selectedContact);
+  
+  }
+  
+
 const [editIndex, setEditIndex] = useState(-1)
 const [showInput, setShowInput] = useState(false)
 const [editted, seteditted] = useState(false)
-const [editContact, setEditContact] = useState({})
+const [editContact, setEditContact] = useState(null)
 //   vaghti roye edit mizanam hame a taghir mide
 const save= (obj,contactId,contactUrl)=>{
   let url=contactUrl
@@ -118,6 +177,8 @@ let newContacts=contacts.splice(contactId-1,1,mycontact)
 // console.log(newContacts);
 // console.log(contacts);
 setContacts(contacts)
+setSelectedContact(mycontact)
+console.log(contacts);
 setEditContact({})
 // setEditContact(obj)
   setEditIndex(-1)
@@ -157,10 +218,14 @@ const update=(e)=>{
   // setEditContact({})
 
 }
-const edit=(obj,contactId,contactUrl)=>{
+const edit=(obj)=>{
+  // console.log(obj);
+
+  // alert(1)
+  // console.log(222222);
   setEditContact(obj)
-  setEditIndex(contactId-1)
-  
+  setEditIndex((obj.id)-1)
+  // console.log(obj);
 // let newcontact=[...contacts]
 // console.log(newcontact);
 // newcontact.splice(editIndex,1,editContact)
@@ -179,13 +244,14 @@ useEffect(() => {
  
  
 
-console.log(contacts);
+// console.log(contacts);
 
     return (
       // <div className="app-container">
       <div className="container-contact">
-      <Search onSearch={handleSearch} search={search} />
-      {showAddContact && <AddContact onAddContact={handleAddContact} />}
+      <Search ref={ref} newSearch={newSearch} searchTerm={searchTerm} onSearch={handleSearch} search={search} />
+      <p className="last-search">Last search: {searchTerm}</p>
+      {showAddContact && !closeAdd && <AddContact onAddContact={handleAddContact} onClose={handlecloseAdd}/>}
       <div className="header-contact">
       <p>contacts(6)</p>
       <div className="header-right">
@@ -193,7 +259,9 @@ console.log(contacts);
       <HiViewGrid/>
       </div>
       </div>
-      <ContactList word={word} editted={editted} contacts={contacts} editContact={editContact} save={save} edit={edit} update={update} search={search} onDelete={handleDelete} showInput={showInput} handleShowInput={handleShowInput} />
+      <ContactList word={word} handleShow={handleShow} edit={edit} update={update} editContact={editContact} editted={editted} contacts={contacts} editContact={editContact} save={save}  search={search} onDelete={handleDelete} showInput={showInput} handleShowInput={handleShowInput} />
+      {/* <ContactList word={word} handleShow={handleShow} editted={editted} contacts={contacts} editContact={editContact} save={save} edit={edit} update={update} search={search} onDelete={handleDelete} showInput={showInput} handleShowInput={handleShowInput} /> */}
+    {selectedContact && !close && <ContactInfo contactInfo={selectedContact} onDelete={handleDelete} edit={edit} update={update} save={save} editContact={editContact} onClose={handleclose}/> } 
      <div onClick={()=>setShowAddContact(!showAddContact)} className="cicle-plus">+</div>
      <div className="container-icon">
      <AiFillHome className="home-icon"/>
