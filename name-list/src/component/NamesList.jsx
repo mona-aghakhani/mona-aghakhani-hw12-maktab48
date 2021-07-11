@@ -7,13 +7,7 @@ import './NamesList.css'
 const NamesList = ({datas, search,onAdd}) => {
 // console.log(datas);
     const filterDatas = datas.filter(person => person.name.toLocaleLowerCase().startsWith(search))
-    // const showNames = filterDatas.map(person => <Name data={person}/>)
-//     const handleAdd = (personId)=>{
-//           console.log(personId);
-//         //   setFavorite(datas.filter((person) => person.id === personId));
-// let favoriteData =datas.filter((person) => person.id === personId)
-// setFavorite([...favorite,favoriteData])
-//         }
+  
 
 
     return (

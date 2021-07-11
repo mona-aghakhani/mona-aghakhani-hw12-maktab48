@@ -18,8 +18,6 @@ import user6 from "./user6.jpg"
 import profile from "./profile.png"
 
 const App = () => {
-  // const title = "Task Manager";
-
   const [contacts, setContacts] = useState([
     {
       id: 1,
@@ -75,39 +73,23 @@ const App = () => {
   const handleSearch = (search) =>{
     setSearch(search)
   }
+
+  /*
+  * useref for save lastitem search
+  */
   const ref = React.createRef();
   const [searchTerm, setSearchTerm] = UseLocalStorage(
     "search",
     "Not searched yet"
   );
-  // const newSearch = () => {
-    
-  //   setSearchTerm(ref.current.value);
-  // };
+ 
   const newSearch = (e) => {
     if (e.keyCode === 13) {
-      // console.log(ref.current.value);
-      // let arr=[]
-      // let a=ref.current.value
-      // arr.push(a)
-      // let myArr=[...arr,a]
-      // console.log(myArr);
-      // console.log(arr);
       setSearchTerm(ref.current.value);
         }
-   
   };
-  // const newSearch = (event) => {
-  //   if (event.keyCode === 13) {
-  //     event.preventDefault();
-  //     let newItem=ref.current.value;
-  //     setSearchTerm(...searchTerm,newItem)
-  //     // this.search();
-  //   }
-  //   // setSearchTerm(ref.current.value);
-  // };
-
-  const [close, setClose] = useState(false)
+  
+const [close, setClose] = useState(false)
 const handleclose = ()=>{
   setClose(true)
 }
@@ -117,7 +99,7 @@ const handleclose = ()=>{
     setCloseAdd(true)
   }
 const handleAddContact = (contact)=>{
-  console.log("contact");
+  // console.log("contact");
   let id=(contacts.length)+1;
   let url=profile;
   let newContact ={...contact,id,url}
@@ -126,43 +108,22 @@ const handleAddContact = (contact)=>{
   // setClose(false)
 }
 const handleDelete = (contactId) => {
-  console.log(contactId);
+  // console.log(contactId);
   setContacts(contacts.filter((contact) => contact.id !== contactId));
-console.log(contacts);
+// console.log(contacts);
 };
 
-
-
-// const [showInput, setShowInput] = useState(false)
-const handleShowInput=(contactId)=>{
-  console.log("input");
-  console.log(contactId);
-  contacts.map((contact)=>contact.id !== contactId ? setShowInput(true) : setShowInput(false) )
-  // if (condition) {
-    
-  // }
-  // setShowInput(!showInput)
-}
 const [selectedContact, setSelectedContact] = useState(null);
 const handleShow = (obj, contactId) =>{
   setSelectedContact(obj)
   setClose(false)
-
-  // let mycontact=contacts.filter((contact)=>contact.id === contactId)
-  // setSelectedContact(contacts.filter((contact)=>contact.id === contactId))
-    // alert(1)
-    // console.log( mycontact);
-    // setSelectedContact(...selectedContact,...mycontact)
-    // console.log(selectedContact);
-  
+ 
   }
-  
-
 const [editIndex, setEditIndex] = useState(-1)
-const [showInput, setShowInput] = useState(false)
+
 const [editted, seteditted] = useState(false)
 const [editContact, setEditContact] = useState(null)
-//   vaghti roye edit mizanam hame a taghir mide
+
 const save= (obj,contactId,contactUrl)=>{
   let url=contactUrl
   let mycontact={...editContact,url}
@@ -171,80 +132,33 @@ const save= (obj,contactId,contactUrl)=>{
   if (editIndex === -1) {
     return
   }
-// setContacts(contacts.splice(contactId-1,1,editContact))
+
 let newContacts=contacts.splice(contactId-1,1,mycontact)
-// setContacts(newccontacts)
-// console.log(newContacts);
-// console.log(contacts);
+
 setContacts(contacts)
 setSelectedContact(mycontact)
-console.log(contacts);
-setEditContact({})
+// setEditContact({})
+setEditContact(null)
 // setEditContact(obj)
   setEditIndex(-1)
-  seteditted(!editted)
-  // console.log(editIndex);
-  // console.log(contactId);
-  // let newcontacts=[...contacts]
-// console.log(newcontacts);
-//   newcontacts.splice(editIndex,1,editContact)
-// console.log(newcontacts);
-
-//  setContacts(newcontacts)
-//  console.log(contacts);
-//   setEditIndex(-1)
-//   setEditContact({})
-// console.log(contacts);
-  // console.log('edit');
-  // console.log(contactId,obj,index);
-  
-  // contacts.map((contact)=>contact.id !== contactId && setShowInput(!showInput) )
-// if (contactId === contacts[index].id) {
-//   setShowInput(!showInput)
-  
-// }
+  // seteditted(!editted)
+  // seteditted(true)
+  seteditted(prevEditted => !prevEditted ? true : true  )
 }
 const update=(e)=>{
   let obj={}
   obj[e.target.name]=e.target.value;
   let newContact ={...editContact,...obj}
   setEditContact(newContact)
-  // console.log(editContact);
-  // let contacts=[...contacts]
-  // contacts.splice(editIndex,1,newContact)
-  // setContacts(contacts)
-  // setEditIndex(-1)
-  // setEditContact({})
-  // setEditContact({})
-
 }
 const edit=(obj)=>{
   // console.log(obj);
-
-  // alert(1)
-  // console.log(222222);
+  // seteditted(false)
+  // seteditted(prevEditted =>prevEditted ? false : false  )
   setEditContact(obj)
   setEditIndex((obj.id)-1)
-  // console.log(obj);
-// let newcontact=[...contacts]
-// console.log(newcontact);
-// newcontact.splice(editIndex,1,editContact)
-// console.log(newcontact);
-// setContacts(newcontact)
-}
-const [word, setWord] = useState("")
-useEffect(() => {
-  setWord("editted")
-}, [contacts])
-//  const [showMsg, setShowMsg] = useState(true)
-//   console.log(showMsg);
-//   useEffect(() => {
-//     setShowMsg(!showMsg)
-//   }, [contacts])
- 
- 
 
-// console.log(contacts);
+}
 
     return (
       // <div className="app-container">
@@ -259,35 +173,16 @@ useEffect(() => {
       <HiViewGrid/>
       </div>
       </div>
-      <ContactList word={word} handleShow={handleShow} edit={edit} update={update} editContact={editContact} editted={editted} contacts={contacts} editContact={editContact} save={save}  search={search} onDelete={handleDelete} showInput={showInput} handleShowInput={handleShowInput} />
-      {/* <ContactList word={word} handleShow={handleShow} editted={editted} contacts={contacts} editContact={editContact} save={save} edit={edit} update={update} search={search} onDelete={handleDelete} showInput={showInput} handleShowInput={handleShowInput} /> */}
-    {selectedContact && !close && <ContactInfo contactInfo={selectedContact} onDelete={handleDelete} edit={edit} update={update} save={save} editContact={editContact} onClose={handleclose}/> } 
+      <ContactList  handleShow={handleShow} edit={edit} update={update} editContact={editContact} editted={editted} contacts={contacts}  save={save}  search={search} onDelete={handleDelete}  />
+    {selectedContact && !close && <ContactInfo contactInfo={selectedContact} onDelete={handleDelete} edit={edit} update={update} save={save} editContact={editContact} onClose={handleclose} /> } 
      <div onClick={()=>setShowAddContact(!showAddContact)} className="cicle-plus">+</div>
      <div className="container-icon">
      <AiFillHome className="home-icon"/>
      <BsBoxArrowUp className="arrow-up"/>
-     </div>
-      {/* {contacts.map((contact,index)=>(
-      <Contacts contactList={contact} />
-      ))} */}
-      {/* <AddContact onSubmit= {this.handleNewContact} /> */}
+     </div> 
        </div>
       //  </div>
     );
-// const renderTask =
-//   tasks.length > 0 ? (
-//     <Tasks tasksList={tasks} onDelete={handleDelete} />
-//   ) : (
-//     <div className="noTasks">No Tasks To show</div>
-//   );
-// const renderTask = () => {
-//   if (tasks.length) {
-//     return <Tasks tasksList={tasks} onDelete={handleDelete} />;
-//   } else {
-//     return <div className="noTasks">No Tasks To show</div>;
-//   }
-// };
- 
 };
 export default App;
 

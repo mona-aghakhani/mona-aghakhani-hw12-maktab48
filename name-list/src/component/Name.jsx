@@ -13,8 +13,5 @@ const Name = ({data,onAdd}) => {
     )
 }
 
-// Name.propTypes = {
-
-// }
 
 export default Name

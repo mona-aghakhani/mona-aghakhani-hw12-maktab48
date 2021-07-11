@@ -12,10 +12,7 @@ import './Favorite.css'
         className={`favorite__close ${selected === person.id ? "show" : ""}`}
         onClick={() => onDelete(person.id,person)}
       />
-           {/* {selected && <FaWindowClose
-        className="favorite__close"
-        onClick={() => onDelete(person.id)}
-      />}  */}
+          
         </div>
     )
 }
